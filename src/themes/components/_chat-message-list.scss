@@ -1,0 +1,10 @@
+// Messages at bottom of the window, when window is not full
+.chat-message-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  
+  .cs-message-list__scroll-wrapper {
+    height: auto;
+  }
+}

@@ -1,0 +1,16 @@
+@import "../../../node_modules/@chatscope/chat-ui-kit-styles/themes/default/variables";
+
+// Some fixes for default chatscope theme
+.cs-conversation__info {
+  min-height: 1.5em;
+}
+
+.chat-conversation {
+  &__typing-indicator {
+    margin-top: 8px;
+  }
+
+  &__draft {
+    color: $color-danger;
+  }
+}

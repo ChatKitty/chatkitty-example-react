@@ -1,11 +1,23 @@
 {
   "extends": [
     "airbnb",
-    "prettier"
+    "eslint:recommended",
+    "prettier/react",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
   ],
   "plugins": [
+    "react",
+    "prettier",
     "import"
   ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "document": false
+  },
   "rules": {
     "react/jsx-filename-extension": [
       1,
@@ -32,7 +44,12 @@
         "ignoreCase": true
       }
     ],
-    "no-use-before-define": ["error", { "variables": false }],
+    "no-use-before-define": [
+      "error",
+      {
+        "variables": false
+      }
+    ],
     "import/no-named-as-default": 0
   }
 }
