@@ -31,6 +31,8 @@
         "ignoreDeclarationSort": true,
         "ignoreCase": true
       }
-    ]
+    ],
+    "no-use-before-define": ["error", { "variables": false }],
+    "import/no-named-as-default": 0
   }
 }
