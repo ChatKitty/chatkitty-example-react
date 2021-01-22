@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 
-// eslint-disable-next-line import/prefer-default-export
+export const channelType = PropTypes.shape({
+  id: PropTypes.number,
+  name: PropTypes.string,
+});
+
 export const userType = PropTypes.shape({
   id: PropTypes.number,
   name: PropTypes.string,

@@ -12,11 +12,25 @@ import ConversationsHeader from '../components/ConversationsHeader';
 import Welcome from '../components/Welcome';
 import { AuthContext } from '../navigation/AuthProvider';
 
+import ChatScreen from './ChatScreen';
+
 export const HomeScreen = () => {
   const { user } = useContext(AuthContext);
 
   const [contacts, setContacts] = useState([]);
+  const [channel, setChannel] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const handleConversationChanges = (contact) => {
+    kitty
+      .createChannel({
+        type: 'DIRECT',
+        members: [{ id: contact.id }],
+      })
+      .then((result) => {
+        setChannel(result.channel);
+      });
+  };
 
   useEffect(() => {
     let isCancelled = false;
@@ -54,7 +68,15 @@ export const HomeScreen = () => {
           {contacts.length > 0 && (
             <ConversationList>
               {contacts.map((contact) => (
-                <Conversation key={contact.id}>
+                <Conversation
+                  key={contact.id}
+                  active={
+                    channel &&
+                    channel.members.some((member) => member.id === contact.id)
+                  }
+                  unreadCnt={0}
+                  onClick={() => handleConversationChanges(contact)}
+                >
                   <Avatar
                     src={contact.displayPictureUrl}
                     status={contact.presence.status.toLowerCase()}
@@ -65,7 +87,8 @@ export const HomeScreen = () => {
             </ConversationList>
           )}
         </Sidebar>
-        <Welcome />
+        {channel && <ChatScreen channel={channel} />}
+        {channel === null && <Welcome />}
       </MainContainer>
     </div>
   );
