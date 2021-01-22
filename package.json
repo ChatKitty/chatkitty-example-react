@@ -4,11 +4,13 @@
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^1.2.1",
     "@material-ui/core": "^4.11.2",
+    "bootstrap": "^4.5.3",
     "chatkitty": "^1.5.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "node-sass": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",

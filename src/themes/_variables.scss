@@ -1,0 +1,16 @@
+// Palette.
+$palette: (
+    primary: #5B3A70,
+    secondary: darken(#5B3A70, 15%),
+    meta: lighten(#5B3A70, 20%),
+    border: lighten(#5B3A70, 58%),
+    bg: #f7f9fb,
+    accent: #5B3A70,
+    accent-alt: #AE8AC4,
+    accent-purple: #b5267b,
+    accent-purple-alt: #632695,
+    accent-green: #438945,
+    accent-green-alt: #73bb75,
+    accent-orange: #fe8c00,
+    accent-orange-alt: #f83600
+);

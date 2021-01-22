@@ -1,0 +1,13 @@
+@import "../../../node_modules/bootstrap/scss/mixins";
+
+.login {
+  max-width: 330px;
+
+  @include media-breakpoint-up(md) {
+    min-width: 400px;
+  }
+
+  h1 {
+    font-size:1.4rem;
+  }
+}

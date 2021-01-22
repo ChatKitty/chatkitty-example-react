@@ -1,0 +1,13 @@
+@import "./variables";
+
+.body {
+  font-size: 16px;
+}
+
+.link, a {
+  color: map_get($palette, "primary" );
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
