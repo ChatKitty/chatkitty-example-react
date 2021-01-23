@@ -7,11 +7,10 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
 
-import kitty from '../chatkitty';
 import { AuthContext } from '../navigation/AuthProvider';
 
 export const ConversationsHeader = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <ConversationHeader className="chat-conversation-header">
@@ -28,7 +27,7 @@ export const ConversationsHeader = () => {
         <Button
           type="button"
           icon={<FontAwesomeIcon icon={faSignOutAlt} />}
-          onClick={() => kitty.endSession()}
+          onClick={() => logout()}
           className="chat-conversation-header__logout-btn"
           title="Logout"
         />
