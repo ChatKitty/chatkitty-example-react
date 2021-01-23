@@ -3,12 +3,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import kitty from '../chatkitty';
-import ChatScreen from '../screens/ChatScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 
 import { AuthContext } from './AuthProvider';
-import GuardedRoute from './GuardedRoute';
 
 export default function Routes() {
   const { user, setUser } = useContext(AuthContext);
@@ -41,7 +39,6 @@ export default function Routes() {
           path="/"
           render={() => (user ? <HomeScreen /> : <LoginScreen />)}
         />
-        <GuardedRoute path="/chat" component={ChatScreen} />
       </Switch>
     </Router>
   );
