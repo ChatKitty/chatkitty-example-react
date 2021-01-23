@@ -5,12 +5,14 @@ import {
 } from '@chatscope/chat-ui-kit-react';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 
-import { userType } from '../types';
+import kitty from '../chatkitty';
+import { AuthContext } from '../navigation/AuthProvider';
 
-export const ConversationsHeader = ({ user, onLogoutClick }) => {
+export const ConversationsHeader = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <ConversationHeader className="chat-conversation-header">
       <Avatar
@@ -26,23 +28,13 @@ export const ConversationsHeader = ({ user, onLogoutClick }) => {
         <Button
           type="button"
           icon={<FontAwesomeIcon icon={faSignOutAlt} />}
-          onClick={onLogoutClick}
+          onClick={() => kitty.endSession()}
           className="chat-conversation-header__logout-btn"
           title="Logout"
         />
       </ConversationHeader.Actions>
     </ConversationHeader>
   );
-};
-
-ConversationsHeader.propTypes = {
-  user: userType,
-  onLogoutClick: PropTypes.func,
-};
-
-ConversationsHeader.defaultProps = {
-  user: null,
-  onLogoutClick: () => {},
 };
 
 export default ConversationsHeader;

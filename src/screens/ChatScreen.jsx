@@ -66,7 +66,7 @@ export const ChatScreen = ({ channel }) => {
         <Avatar
           src={contact.displayPictureUrl}
           name={contact.displayName}
-          status="available"
+          status={contact.presence.status.toLowerCase()}
         />
         <ConversationHeader.Content
           userName={contact.displayName}

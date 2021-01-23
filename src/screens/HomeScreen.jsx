@@ -5,18 +5,15 @@ import {
   MainContainer,
   Sidebar,
 } from '@chatscope/chat-ui-kit-react';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import kitty from '../chatkitty';
 import ConversationsHeader from '../components/ConversationsHeader';
 import Welcome from '../components/Welcome';
-import { AuthContext } from '../navigation/AuthProvider';
 
 import ChatScreen from './ChatScreen';
 
 export const HomeScreen = () => {
-  const { user } = useContext(AuthContext);
-
   const [contacts, setContacts] = useState([]);
   const [channel, setChannel] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -64,7 +61,7 @@ export const HomeScreen = () => {
     <div className="w-100 h-100 d-flex flex-column">
       <MainContainer className="chat-main-container" responsive>
         <Sidebar position="left" scrollable={false}>
-          <ConversationsHeader user={user} />
+          <ConversationsHeader />
           {contacts.length > 0 && (
             <ConversationList>
               {contacts.map((contact) => (
