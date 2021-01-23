@@ -7,6 +7,7 @@ import {
   MessageList,
 } from '@chatscope/chat-ui-kit-react';
 import React, { useContext, useEffect, useState } from 'react';
+import { useImmer } from 'use-immer';
 
 import kitty from '../chatkitty';
 import { AuthContext } from '../navigation/AuthProvider';
@@ -19,13 +20,13 @@ export const ChatScreen = ({ channel }) => {
     channel.members.find((member) => member.id !== user.id)
   );
 
-  const [messages, setMessages] = useState([]);
+  const [messages, updateMessages] = useImmer([]);
 
   useEffect(() => {
     const startChatSessionResult = kitty.startChatSession({
       channel,
       onReceivedMessage: (message) => {
-        setMessages([...messages, message]);
+        updateMessages((draft) => [...draft, message]);
       },
     });
 
@@ -44,7 +45,7 @@ export const ChatScreen = ({ channel }) => {
         channel,
       })
       .then((result) => {
-        setMessages(result.paginator.items);
+        updateMessages(() => result.paginator.items.slice().reverse());
       });
 
     return () => {
