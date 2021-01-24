@@ -6,12 +6,12 @@ export const Welcome = () => {
   const [onlineContactsCount, setOnlineContactsCount] = useState(0);
 
   useEffect(() => {
-    kitty.getOnlineContactsCount().then((result) => {
+    kitty.getContactsCount({ filter: { online: true } }).then((result) => {
       setOnlineContactsCount(result.count);
     });
 
     return kitty.onContactPresenceChanged(() => {
-      kitty.getOnlineContactsCount().then((result) => {
+      kitty.getContactsCount({ filter: { online: true } }).then((result) => {
         setOnlineContactsCount(result.count);
       });
     });
