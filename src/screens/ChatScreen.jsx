@@ -30,16 +30,6 @@ export const ChatScreen = ({ channel }) => {
       },
     });
 
-    const onContactPresenceChangedUnsubscribe = kitty.onContactPresenceChanged(
-      (changed) => {
-        if (changed.id === contact.id) {
-          setContact(changed);
-        }
-      }
-    );
-
-    setContact(channel.members.find((member) => member.id !== user.id));
-
     kitty
       .getMessages({
         channel,
@@ -48,10 +38,19 @@ export const ChatScreen = ({ channel }) => {
         updateMessages(() => result.paginator.items.slice().reverse());
       });
 
-    return () => {
-      onContactPresenceChangedUnsubscribe();
-      startChatSessionResult.session.end();
-    };
+    return startChatSessionResult.session.end;
+  }, [channel]);
+
+  useEffect(() => {
+    const unsubscribe = kitty.onContactPresenceChanged((changed) => {
+      if (changed.id === contact.id) {
+        setContact(changed);
+      }
+    });
+
+    setContact(channel.members.find((member) => member.id !== user.id));
+
+    return unsubscribe;
   }, [channel]);
 
   const handleSend = async (message) => {

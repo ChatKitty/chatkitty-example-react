@@ -42,18 +42,16 @@ export const HomeScreen = () => {
       }
     });
 
-    const onContactPresenceChangedUnsubscribe = kitty.onContactPresenceChanged(
-      () => {
-        kitty.getContacts().then((result) => {
-          setContacts(result.paginator.items);
-        });
-      }
-    );
+    const unsubscribe = kitty.onContactPresenceChanged(() => {
+      kitty.getContacts().then((result) => {
+        setContacts(result.paginator.items);
+      });
+    });
 
     return () => {
       isCancelled = true;
 
-      onContactPresenceChangedUnsubscribe();
+      unsubscribe();
     };
   }, [loading]);
 
