@@ -16,7 +16,6 @@ import ChatScreen from './ChatScreen';
 export const HomeScreen = () => {
   const [contacts, setContacts] = useState([]);
   const [channel, setChannel] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   const handleConversationChanges = (contact) => {
     kitty
@@ -30,30 +29,16 @@ export const HomeScreen = () => {
   };
 
   useEffect(() => {
-    let isCancelled = false;
-
     kitty.getContacts().then((result) => {
-      if (!isCancelled) {
-        setContacts(result.paginator.items);
-
-        if (loading) {
-          setLoading(false);
-        }
-      }
+      setContacts(result.paginator.items);
     });
 
-    const unsubscribe = kitty.onContactPresenceChanged(() => {
+    return kitty.onContactPresenceChanged(() => {
       kitty.getContacts().then((result) => {
         setContacts(result.paginator.items);
       });
     });
-
-    return () => {
-      isCancelled = true;
-
-      unsubscribe();
-    };
-  }, [loading]);
+  }, []);
 
   return (
     <div className="w-100 h-100 d-flex flex-column">
