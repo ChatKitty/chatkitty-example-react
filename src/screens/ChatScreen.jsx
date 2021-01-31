@@ -34,13 +34,11 @@ export const ChatScreen = ({ channel }) => {
       },
       onTypingStarted: (typingUser) => {
         if (typingUser.id !== user.id) {
-          console.log('Typing started');
           setTyping(typingUser);
         }
       },
       onTypingStopped: (typingUser) => {
         if (typingUser.id !== user.id) {
-          console.log('Typing stopped');
           setTyping(null);
         }
       },

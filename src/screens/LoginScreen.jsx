@@ -8,8 +8,7 @@ import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../navigation/AuthProvider';
 
 export const LoginScreen = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [nickname, setNickname] = useState('');
 
   const { login, loading } = useContext(AuthContext);
 
@@ -18,33 +17,23 @@ export const LoginScreen = () => {
       <Card className="login">
         <Card.Body>
           <Form>
-            <h1 className="mb-3">Login to your account</h1>
+            <h1 className="mb-3">Enter a nickname</h1>
             <Form.Group>
-              <Form.Label>Username</Form.Label>
+              <Form.Label>Nickname</Form.Label>
               <Form.Control
-                name="username"
+                name="nickname"
                 type="text"
-                placeholder="username"
-                onChange={(event) => setUsername(event.target.value)}
+                placeholder="nickname"
+                onChange={(event) => setNickname(event.target.value)}
                 autoComplete="username"
               />
             </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                name="password"
-                type="password"
-                placeholder="password"
-                onChange={(event) => setPassword(event.target.value)}
-                autoComplete="current-password"
-              />
-            </Form.Group>
             <Button
               size="sm"
               className="w-100"
-              onClick={() => login(username, password)}
-              disabled={username.length === 0 || password.length === 0}
+              onClick={() => login(nickname)}
+              disabled={nickname.length === 0}
             >
               Login
             </Button>

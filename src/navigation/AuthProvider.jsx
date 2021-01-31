@@ -19,16 +19,11 @@ export const AuthProvider = ({ children }) => {
         setLoading,
         failed,
         setFailed,
-        login: async (username, password) => {
+        login: async (nickname) => {
           setLoading(true);
 
-          console.log(`Starting session: ${username}`);
-
           const result = await kitty.startSession({
-            username,
-            authParams: {
-              password,
-            },
+            username: nickname,
           });
 
           setLoading(false);
