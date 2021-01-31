@@ -3,6 +3,7 @@ import {
   ChatContainer,
   ConversationHeader,
   Message,
+  MessageGroup,
   MessageInput,
   MessageList,
 } from '@chatscope/chat-ui-kit-react';
@@ -77,12 +78,25 @@ export const ChatScreen = ({ channel }) => {
       <MessageList scrollBehavior="auto" className="chat-message-list">
         {messages
           .map((m) => ({
+            key: m.id,
             message: m.body,
             sender: m.user.displayName,
+            senderUsername: m.user.name,
             sentTime: m.createdTime,
           }))
           .map((m) => (
-            <Message key={m.id} model={m} />
+            <MessageGroup
+              key={m.key}
+              sender={m.sender}
+              sentTime={m.sentTime}
+              direction={
+                m.senderUsername === user.name ? 'outgoing' : 'incoming'
+              }
+            >
+              <MessageGroup.Messages>
+                <Message key={m.key} model={m} />
+              </MessageGroup.Messages>
+            </MessageGroup>
           ))}
       </MessageList>
 
