@@ -6,6 +6,7 @@ import {
   MessageGroup,
   MessageInput,
   MessageList,
+  TypingIndicator,
 } from '@chatscope/chat-ui-kit-react';
 import React, { useContext, useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
@@ -23,11 +24,25 @@ export const ChatScreen = ({ channel }) => {
 
   const [messages, updateMessages] = useImmer([]);
 
+  const [typing, setTyping] = useState(null);
+
   useEffect(() => {
     const startChatSessionResult = kitty.startChatSession({
       channel,
       onReceivedMessage: (message) => {
         updateMessages((draft) => [...draft, message]);
+      },
+      onTypingStarted: (typingUser) => {
+        if (typingUser.id !== user.id) {
+          console.log('Typing started');
+          setTyping(typingUser);
+        }
+      },
+      onTypingStopped: (typingUser) => {
+        if (typingUser.id !== user.id) {
+          console.log('Typing stopped');
+          setTyping(null);
+        }
       },
     });
 
@@ -54,12 +69,27 @@ export const ChatScreen = ({ channel }) => {
     return unsubscribe;
   }, [channel]);
 
+  const handleMessageChanged = async (message) => {
+    await kitty.sendKeystrokes({
+      channel,
+      keys: message,
+    });
+  };
+
   const handleSend = async (message) => {
     await kitty.sendMessage({
       channel,
       body: message,
     });
   };
+
+  const renderTypingIndicator = (() => {
+    if (typing) {
+      return <TypingIndicator content={`${typing.displayName} is typing`} />;
+    }
+
+    return null;
+  })();
 
   return (
     <ChatContainer>
@@ -75,7 +105,11 @@ export const ChatScreen = ({ channel }) => {
         />
       </ConversationHeader>
 
-      <MessageList scrollBehavior="auto" className="chat-message-list">
+      <MessageList
+        typingIndicator={renderTypingIndicator}
+        scrollBehavior="auto"
+        className="chat-message-list"
+      >
         {messages
           .map((m) => ({
             key: m.id,
@@ -105,6 +139,7 @@ export const ChatScreen = ({ channel }) => {
         fancyScroll
         className="chat-message-input"
         attachButton={false}
+        onChange={handleMessageChanged}
         onSend={handleSend}
       />
     </ChatContainer>
