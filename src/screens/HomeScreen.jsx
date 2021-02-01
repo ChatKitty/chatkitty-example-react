@@ -4,6 +4,7 @@ import {
   ConversationList,
   MainContainer,
   Sidebar,
+  TypingIndicator,
 } from '@chatscope/chat-ui-kit-react';
 import React, { useEffect, useState } from 'react';
 
@@ -15,13 +16,17 @@ import ChatScreen from './ChatScreen';
 
 export const HomeScreen = () => {
   const [contacts, setContacts] = useState([]);
+  const [contact, setContact] = useState(null);
   const [channel, setChannel] = useState(null);
+  const [typing, setTyping] = useState(null);
 
-  const handleConversationChanges = (contact) => {
+  const handleConversationChanges = (aContact) => {
+    setContact(aContact);
+
     kitty
       .createChannel({
         type: 'DIRECT',
-        members: [{ id: contact.id }],
+        members: [{ id: aContact.id }],
       })
       .then((result) => {
         setChannel(result.channel);
@@ -40,6 +45,32 @@ export const HomeScreen = () => {
     });
   }, []);
 
+  useEffect(() => {
+    return kitty.onParticipantStartedTyping((participant) => {
+      if (!(contact && contact.name === participant.name)) {
+        setTyping(participant);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    return kitty.onParticipantStoppedTyping((participant) => {
+      if (!(contact && contact.name === participant.name)) {
+        setTyping(null);
+      }
+    });
+  }, []);
+
+  const renderTypingIndicator = (aContact) => {
+    if (typing && typing.name === aContact.name) {
+      return (
+        <TypingIndicator className="chat-conversation__typing-indicator" />
+      );
+    }
+
+    return null;
+  };
+
   return (
     <div className="w-100 h-100 d-flex flex-column">
       <MainContainer className="chat-main-container" responsive>
@@ -47,21 +78,24 @@ export const HomeScreen = () => {
           <ConversationsHeader />
           {contacts.length > 0 && (
             <ConversationList>
-              {contacts.map((contact) => (
+              {contacts.map((aContact) => (
                 <Conversation
-                  key={contact.id}
+                  key={aContact.id}
                   active={
                     channel &&
-                    channel.members.some((member) => member.id === contact.id)
+                    channel.members.some((member) => member.id === aContact.id)
                   }
                   unreadCnt={0}
-                  onClick={() => handleConversationChanges(contact)}
+                  onClick={() => handleConversationChanges(aContact)}
                 >
                   <Avatar
-                    src={contact.displayPictureUrl}
-                    status={contact.presence.status.toLowerCase()}
+                    src={aContact.displayPictureUrl}
+                    status={aContact.presence.status.toLowerCase()}
                   />
-                  <Conversation.Content name={contact.displayName} />
+                  <Conversation.Content
+                    name={aContact.displayName}
+                    info={renderTypingIndicator(aContact)}
+                  />
                 </Conversation>
               ))}
             </ConversationList>
