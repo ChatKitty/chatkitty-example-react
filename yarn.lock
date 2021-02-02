@@ -3334,10 +3334,10 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
-chatkitty@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/chatkitty/-/chatkitty-1.6.0.tgz#65b604a84ad8980eb5bf8c92f90e717ade4e4eb7"
-  integrity sha512-Abn8wWIal0W8uUTNftdv/LxMJfarGrvRvfhxNKucLo+4mPpKZgPsICLyMm+Auczkb2GTC0kpIzALf9xaJRLVdA==
+chatkitty@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/chatkitty/-/chatkitty-1.9.0.tgz#fe3074445eb25b034b635930b4800bb71addf72c"
+  integrity sha512-hGPQVuvDCiDphcq+CGswCJOdzNqBA4JzsoSc7kb7a3g+79vEpjALZWR70Izgo/fk7UX81asKGJYpE5yKEVC7nA==
   dependencies:
     "@stomp/rx-stomp" "^0.3.5"
     axios "^0.21.1"

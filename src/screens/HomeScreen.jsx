@@ -47,22 +47,21 @@ export const HomeScreen = () => {
 
   useEffect(() => {
     return kitty.onParticipantStartedTyping((participant) => {
-      if (!(contact && contact.name === participant.name)) {
-        setTyping(participant);
-      }
+      setTyping(participant);
     });
   }, []);
 
   useEffect(() => {
-    return kitty.onParticipantStoppedTyping((participant) => {
-      if (!(contact && contact.name === participant.name)) {
-        setTyping(null);
-      }
+    return kitty.onParticipantStoppedTyping(() => {
+      setTyping(null);
     });
   }, []);
 
   const renderTypingIndicator = (aContact) => {
-    if (typing && typing.name === aContact.name) {
+    const isTyping = typing && typing.id === aContact.id;
+    const isActive = contact && contact.id === aContact.id;
+
+    if (isTyping && !isActive) {
       return (
         <TypingIndicator className="chat-conversation__typing-indicator" />
       );
