@@ -1617,18 +1617,18 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stomp/rx-stomp@^0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@stomp/rx-stomp/-/rx-stomp-0.3.5.tgz#3739f44f3f098ddfaf4f46d1f3b6541e3a1d4224"
-  integrity sha512-oEaMkq2IejzVKFg8EtSTe0xnyhPVWJxuQmnuTQStC3EAPcJgH9eQziJc0BR9tUvm6m962v4LPvyJKlzxOJhFWg==
+"@stomp/rx-stomp@^1.1.0":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@stomp/rx-stomp/-/rx-stomp-1.1.2.tgz#0d6beaf6ee87b99b276d5711b315d7d5d099c74c"
+  integrity sha512-RG6QsalsnpGC6qJT727PTe33azu9NvSwfMWQhoxOm4Ii2f8TAbNLVUBv0+WvgXGxiPREoqw5a0v5jwwrS+yMNQ==
   dependencies:
-    "@stomp/stompjs" "^5.1.0 >=5.4.2"
+    "@stomp/stompjs" "^6.0.0 >=6.1.0"
     angular2-uuid "^1.1.1"
 
-"@stomp/stompjs@^5.1.0 >=5.4.2":
-  version "5.4.4"
-  resolved "https://registry.yarnpkg.com/@stomp/stompjs/-/stompjs-5.4.4.tgz#f51d2edf9a00fac645dde3a494738d96ca17e5aa"
-  integrity sha512-RIzQ7MLRSJLUpTHcje1ZclnHH982amJSKC9bDxGO0wyu5OF9ROuuiLf7TxKxo1zUu7lGEYNedg9SEi87uMWDqg==
+"@stomp/stompjs@^6.0.0 >=6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@stomp/stompjs/-/stompjs-6.1.0.tgz#b77ca240775a7a34289b2c09618e256be761d142"
+  integrity sha512-Bt+whL0V51rSKP35OkgM1yeVu/usunpz5l1VYuoWw8mGsDMNd3W3FpWa4/4eis6QfXO3uteNGfyE21XWn0pGAQ==
 
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   version "1.4.2"
@@ -3334,14 +3334,15 @@ char-regex@^1.0.2:
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-1.0.2.tgz#d744358226217f981ed58f479b1d6bcc29545dcf"
   integrity sha512-kWWXztvZ5SBQV+eRgKFeh8q5sLuZY2+8WUIzlxWVTg+oGwY14qylx1KbKzHd8P6ZYkAg0xyIDU9JMHhyJMZ1jw==
 
-chatkitty@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/chatkitty/-/chatkitty-1.9.0.tgz#fe3074445eb25b034b635930b4800bb71addf72c"
-  integrity sha512-hGPQVuvDCiDphcq+CGswCJOdzNqBA4JzsoSc7kb7a3g+79vEpjALZWR70Izgo/fk7UX81asKGJYpE5yKEVC7nA==
+chatkitty@^1.17.2:
+  version "1.17.2"
+  resolved "https://registry.yarnpkg.com/chatkitty/-/chatkitty-1.17.2.tgz#b687f1529407f24202e69b947087ec2f2624f9b4"
+  integrity sha512-bKkBIsAuN3ZrbRU8odMl6P+yOb43awEOaYv+SHlgExlIOVFvwC6yNtzFlyBTZcaZww2igjmk3PTiVLOoFnwCVg==
   dependencies:
-    "@stomp/rx-stomp" "^0.3.5"
+    "@stomp/rx-stomp" "^1.1.0"
     axios "^0.21.1"
     rxjs "^6.6.3"
+    sockjs-client "^1.5.1"
     text-encoding "^0.7.0"
 
 check-types@^11.1.1:
@@ -4137,7 +4138,7 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@^3.1.1, debug@^3.2.5:
+debug@^3.1.1, debug@^3.2.5, debug@^3.2.6:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.7.tgz#72580b7e9145fb39b6676f9c5e5fb100b934179a"
   integrity sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==
@@ -5255,7 +5256,7 @@ faye-websocket@^0.10.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-faye-websocket@~0.11.1:
+faye-websocket@^0.11.3, faye-websocket@~0.11.1:
   version "0.11.3"
   resolved "https://registry.yarnpkg.com/faye-websocket/-/faye-websocket-0.11.3.tgz#5c0e9a8968e8912c286639fde977a8b209f2508e"
   integrity sha512-D2y4bovYpzziGgbHYtGCMjlJM36vAl/y+xUyn1C+FVx8szd1E+86KwVw6XvYSzOP8iMpm1X0I4xJD+QtUb36OA==
@@ -7246,7 +7247,7 @@ json-stringify-safe@~5.0.1:
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
 
-json3@^3.3.2:
+json3@^3.3.2, json3@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/json3/-/json3-3.3.3.tgz#7fc10e375fc5ae42c4705a5cc0aa6f62be305b81"
   integrity sha512-c7/8mbUsKigAbLkD5B010BK4D9LZm7A1pNItkEwiUZRpIN66exu/e7YQWysGun+TRKaJp8MhemM+VkfWv42aCA==
@@ -10807,6 +10808,18 @@ sockjs-client@1.4.0:
     json3 "^3.3.2"
     url-parse "^1.4.3"
 
+sockjs-client@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/sockjs-client/-/sockjs-client-1.5.1.tgz#256908f6d5adfb94dabbdbd02c66362cca0f9ea6"
+  integrity sha512-VnVAb663fosipI/m6pqRXakEOw7nvd7TUgdr3PlR/8V2I95QIdwT8L4nMxhyU8SmDBHYXU1TOElaKOmKLfYzeQ==
+  dependencies:
+    debug "^3.2.6"
+    eventsource "^1.0.7"
+    faye-websocket "^0.11.3"
+    inherits "^2.0.4"
+    json3 "^3.3.3"
+    url-parse "^1.5.1"
+
 sockjs@0.3.20:
   version "0.3.20"
   resolved "https://registry.yarnpkg.com/sockjs/-/sockjs-0.3.20.tgz#b26a283ec562ef8b2687b44033a4eeceac75d855"
@@ -11826,6 +11839,14 @@ url-parse@^1.4.3:
   version "1.4.7"
   resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.7.tgz#a8a83535e8c00a316e403a5db4ac1b9b853ae278"
   integrity sha512-d3uaVyzDB9tQoSXFvuSUNFibTd9zxd2bkVrDRvF5TmvWWQwqE4lgYJ5m+x1DbecWkw+LK4RNl2CU1hHuOKPVlg==
+  dependencies:
+    querystringify "^2.1.1"
+    requires-port "^1.0.0"
+
+url-parse@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.1.tgz#d5fa9890af8a5e1f274a2c98376510f6425f6e3b"
+  integrity sha512-HOfCOUJt7iSYzEx/UqgtwKRMC6EU91NFhsCHMv9oM03VJcVo2Qrp8T8kI9D7amFf1cu+/3CEhgb3rF9zL7k85Q==
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
