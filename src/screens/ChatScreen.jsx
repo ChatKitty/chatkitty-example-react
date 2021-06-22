@@ -56,7 +56,7 @@ export const ChatScreen = ({ channel }) => {
   }, [channel]);
 
   useEffect(() => {
-    const unsubscribe = kitty.onContactPresenceChanged((changed) => {
+    const unsubscribe = kitty.onUserPresenceChanged((changed) => {
       if (changed.id === contact.id) {
         setContact(changed);
       }

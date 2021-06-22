@@ -34,12 +34,12 @@ export const HomeScreen = () => {
   };
 
   useEffect(() => {
-    kitty.getContacts().then((result) => {
+    kitty.getUsers().then((result) => {
       setContacts(result.paginator.items);
     });
 
-    return kitty.onContactPresenceChanged(() => {
-      kitty.getContacts().then((result) => {
+    return kitty.onUserPresenceChanged(() => {
+      kitty.getUsers().then((result) => {
         setContacts(result.paginator.items);
       });
     });
@@ -82,6 +82,7 @@ export const HomeScreen = () => {
                   key={aContact.id}
                   active={
                     channel &&
+                    channel.members &&
                     channel.members.some((member) => member.id === aContact.id)
                   }
                   unreadCnt={0}
