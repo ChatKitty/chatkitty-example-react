@@ -1,5 +1,9 @@
 import ChatKitty from 'chatkitty';
 
-const kitty = ChatKitty.getInstance('7dd9d720-310f-4770-a738-f0d37f8f92ea');
+const kitty = new ChatKitty({
+  apiKey: 'b464c6c5-1807-4bc6-b6a4-be04399d8407',
+  isSecure: false,
+  host: 'localhost:9001/chat',
+});
 
 export default kitty;

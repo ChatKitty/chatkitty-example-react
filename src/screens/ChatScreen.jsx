@@ -8,6 +8,7 @@ import {
   MessageList,
   TypingIndicator,
 } from '@chatscope/chat-ui-kit-react';
+import _unescape from 'lodash/unescape';
 import React, { useContext, useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
 
@@ -25,6 +26,7 @@ export const ChatScreen = ({ channel }) => {
   const [messages, updateMessages] = useImmer([]);
 
   const [typing, setTyping] = useState(null);
+  const [root, setMessage] = useState(null);
 
   useEffect(() => {
     const startChatSessionResult = kitty.startChatSession({
@@ -45,10 +47,16 @@ export const ChatScreen = ({ channel }) => {
     });
 
     kitty
+      .getUserIsChannelMember({ user, channel })
+      .then((result) => console.log(result));
+
+    kitty
       .getMessages({
         channel,
       })
       .then((result) => {
+        setMessage(result.paginator.items[0]);
+
         updateMessages(() => result.paginator.items.slice().reverse());
       });
 
@@ -56,7 +64,7 @@ export const ChatScreen = ({ channel }) => {
   }, [channel]);
 
   useEffect(() => {
-    const unsubscribe = kitty.onContactPresenceChanged((changed) => {
+    const unsubscribe = kitty.onUserPresenceChanged((changed) => {
       if (changed.id === contact.id) {
         setContact(changed);
       }
@@ -76,8 +84,8 @@ export const ChatScreen = ({ channel }) => {
 
   const handleSend = async (message) => {
     await kitty.sendMessage({
-      channel,
-      body: message,
+      message: root,
+      body: _unescape(message),
     });
   };
 

@@ -34,12 +34,14 @@ export const HomeScreen = () => {
   };
 
   useEffect(() => {
-    kitty.getContacts().then((result) => {
+    kitty.getChannels().then((result) => console.log(result));
+
+    kitty.getUsers().then((result) => {
       setContacts(result.paginator.items);
     });
 
-    return kitty.onContactPresenceChanged(() => {
-      kitty.getContacts().then((result) => {
+    return kitty.onUserPresenceChanged(() => {
+      kitty.getUsers().then((result) => {
         setContacts(result.paginator.items);
       });
     });
